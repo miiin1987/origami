@@ -1,0 +1,392 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>法人のお客様 | ORIGAMI GRP</title>
+<link rel="icon" href="assets/emblem-red.png">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@300;400;600;700&amp;family=Geist+Mono:wght@400;500;600&amp;family=Anton&amp;family=Noto+Sans+JP:wght@400;500;700;900&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0;background:#050506}
+a{color:#F1F1FF}a:hover{color:#FF9AA5}
+@keyframes marquee{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+@keyframes sway{0%{transform:rotate(-7deg) scale(1)}50%{transform:rotate(7deg) scale(1.08)}100%{transform:rotate(-7deg) scale(1)}}
+@keyframes swayR{0%{transform:rotate(170deg) scale(.85)}50%{transform:rotate(186deg) scale(.95)}100%{transform:rotate(170deg) scale(.85)}}
+@keyframes flowL{to{stroke-dashoffset:-1400}}
+@keyframes pulseR{0%,100%{opacity:.45;transform:scale(1)}50%{opacity:1;transform:scale(1.18)}}
+@keyframes spark{0%{transform:translate(0,0) scale(.5);opacity:0}15%{opacity:1}100%{transform:translate(var(--dx),-480px) scale(1.1);opacity:0}}
+@keyframes scanY{0%{top:-2%}100%{top:102%}}
+@keyframes jolt{0%,88%,100%{transform:translate(0,0);text-shadow:none}90%{transform:translate(-4px,1px);text-shadow:3px 0 #C8102E,-3px 0 #4FD1FF}92%{transform:translate(3px,-1px);text-shadow:-3px 0 #C8102E,3px 0 #4FD1FF}94%{transform:translate(0,0);text-shadow:none}}
+@keyframes tabShine{0%{transform:translateX(-120%) skewX(-20deg)}60%,100%{transform:translateX(320%) skewX(-20deg)}}
+@keyframes tabGlow{0%,100%{box-shadow:0 0 0 rgba(200,16,46,0),0 6px 18px rgba(200,16,46,.35)}50%{box-shadow:0 0 0 4px rgba(200,16,46,.18),0 8px 28px rgba(200,16,46,.6)}}
+@keyframes barA{from{transform:scaleX(0)}to{transform:scaleX(1)}}
+@keyframes barB{from{transform:scaleX(0)}to{transform:scaleX(1)}}
+@keyframes panA{0%{opacity:0;transform:translateY(14px);filter:blur(4px)}100%{opacity:1;transform:none;filter:none}}
+@keyframes panB{0%{opacity:0;transform:translateY(14px);filter:blur(4px)}100%{opacity:1;transform:none;filter:none}}
+@keyframes tick{0%,100%{opacity:.3}50%{opacity:1}}
+@keyframes blink{0%,49%{opacity:1}50%,100%{opacity:0}}
+.mq{display:flex;width:max-content;animation:marquee 28s linear infinite}
+.sway{animation:sway 5s ease-in-out infinite;transform-origin:50% 50%}
+.swayR{animation:swayR 6.5s ease-in-out infinite;transform-origin:50% 50%}
+.flowL{stroke-dasharray:90 1310;animation:flowL var(--t) linear infinite}
+.pulseR{animation:pulseR 2.2s ease-in-out infinite}
+.spark{position:absolute;bottom:0;border-radius:50%;animation:spark var(--t) linear infinite}
+.scanY{position:absolute;left:0;right:0;height:2px;animation:scanY 2.6s linear infinite}
+.jolt{display:inline-block;animation:jolt 2.2s steps(1) infinite}
+.tickA{animation:tick 1s ease-in-out infinite}
+.svTab{position:relative;overflow:hidden;font-family:'Geist Mono',monospace;font-size:13px;padding:10px 12px;min-height:44px;white-space:nowrap;border-radius:4px;cursor:pointer;transition:transform .2s,border-color .2s,background .2s,color .2s}
+.svTab .no{color:#FF5A6E;transition:color .2s}
+.svOff{border:1px solid rgba(241,241,255,0.18);background:rgba(255,255,255,0.02);color:#F1F1FF}
+.svOff:hover{transform:translateY(-3px);border-color:#C8102E;background:rgba(200,16,46,0.12)}
+.svOff:hover .no{color:#FFFFFF}
+.svOn{border:1px solid #FF3B55;background:linear-gradient(135deg,#E0143A,#9E0B24);color:#FFFFFF;transform:translateY(-3px);animation:tabGlow 1.6s ease-in-out infinite}
+.svOn .no{color:#FFFFFF}
+.svOn::before{content:"";position:absolute;top:0;bottom:0;left:0;width:35%;background:linear-gradient(90deg,rgba(255,255,255,0),rgba(255,255,255,0.45),rgba(255,255,255,0));animation:tabShine 2.2s ease-in-out infinite;pointer-events:none}
+.svOn::after{content:"";position:absolute;left:50%;bottom:-1px;width:10px;height:10px;margin-left:-5px;background:#050506;transform:translateY(6px) rotate(45deg)}
+.svBar{position:absolute;left:0;right:0;bottom:0;height:3px;background:#FFFFFF;transform-origin:0 50%;pointer-events:none}
+.barA{animation:barA 4.5s linear forwards}.barB{animation:barB 4.5s linear forwards}
+@media (max-width:640px){
+.svList{display:grid !important;grid-template-columns:1fr 1fr;gap:8px !important}
+.svTab{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;white-space:normal;text-align:center;font-size:12px;line-height:1.45;padding:10px 6px;min-height:64px}
+.svTab .no{font-size:11px}
+.svList sc-for,.svList sc-if{display:contents}
+.svWide{grid-column:1 / -1}
+.svOn::after{display:none}
+.svOn,.svOff:hover{transform:none}
+}
+.panA{animation:panA .5s cubic-bezier(.2,.8,.2,1) both}.panB{animation:panB .5s cubic-bezier(.2,.8,.2,1) both}
+.caret{animation:blink 1s step-end infinite}
+@media (prefers-reduced-motion: reduce){.mq,.sway,.swayR,.flowL,.pulseR,.spark,.scanY,.jolt,.tickA,.svOn,.svOn::before,.barA,.barB,.panA,.panB,.caret{animation:none}}
+</style>
+
+</head>
+<body>
+<div id="app"></div>
+<template id="dc-template">
+
+<div style="font-family: 'Noto Sans JP', sans-serif; color: rgba(241,241,255,0.78); background: #050506; line-height: 1.8; overflow: hidden; position: relative">
+
+<!-- Floating pill nav -->
+<header style="position: relative; z-index: 10; display: flex; justify-content: center; padding: 20px 16px 0">
+<nav aria-label="メイン" style="display: flex; flex-wrap: wrap; align-items: center; justify-content: center; gap: 4px 0; background: {{red}}; border-radius: 6px; padding: 6px 8px; font-family: 'Geist Mono', monospace; font-size: 13px; box-shadow: 0 8px 40px rgba(212,20,42,0.35)">
+<a href="#service" style="display: inline-flex; align-items: center; gap: 8px; padding: 6px 16px; text-decoration: none; color: #FFFFFF">Menu
+<svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M2 4h10M2 7h10M2 10h10"></path></svg></a>
+<span aria-hidden="true" style="width: 1px; height: 16px; background: rgba(255,255,255,0.4)"></span>
+<a href="index.html" style="display: inline-flex; align-items: center; gap: 10px; padding: 4px 18px; text-decoration: none; color: #FFFFFF; font-family: 'Geist', sans-serif; font-weight: 700; letter-spacing: 0.04em"><img src="assets/emblem-red.png" alt="" style="width: 26px; height: 26px">ORIGAMI GRP <span style="font-family: 'Geist Mono', monospace; font-weight: 400">is〈{{word}}〉</span></a>
+<span aria-hidden="true" style="width: 1px; height: 16px; background: rgba(255,255,255,0.4)"></span>
+<a href="#contact" style="padding: 6px 16px; text-decoration: none; color: #FFFFFF">Contact →</a>
+</nav>
+</header>
+
+<!-- Side rails -->
+<div aria-hidden="true" style="position: absolute; left: 22px; top: 380px; writing-mode: vertical-rl; transform: rotate(180deg); font-family: 'Geist Mono', monospace; font-size: 11px; letter-spacing: 0.2em; color: rgba(241,241,255,0.55); z-index: 5">since [YEAR]</div>
+<div aria-hidden="true" style="position: absolute; right: 22px; top: 300px; display: flex; flex-direction: column; gap: 5px; z-index: 5">
+<span class="tickA" style="width: 14px; height: 2px; background: {{red}}"></span><span class="tickA" style="width: 14px; height: 2px; background: {{red}}"></span><span class="tickA" style="width: 14px; height: 2px; background: {{red}}"></span><span style="width: 10px; height: 2px; background: rgba(241,241,255,0.3)"></span><span style="width: 10px; height: 2px; background: rgba(241,241,255,0.3)"></span><span style="width: 10px; height: 2px; background: rgba(241,241,255,0.3)"></span><span style="width: 10px; height: 2px; background: rgba(241,241,255,0.3)"></span><span style="width: 10px; height: 2px; background: rgba(241,241,255,0.3)"></span><span style="width: 10px; height: 2px; background: rgba(241,241,255,0.3)"></span><span style="width: 10px; height: 2px; background: rgba(241,241,255,0.3)"></span><span style="width: 10px; height: 2px; background: rgba(241,241,255,0.3)"></span><span style="width: 10px; height: 2px; background: rgba(241,241,255,0.3)"></span>
+</div>
+
+<!-- Hero -->
+<section id="top" style="position: relative; margin-top: -60px; min-height: 860px; display: flex; flex-direction: column; justify-content: flex-end">
+<div aria-hidden="true" style="position: absolute; inset: 0; pointer-events: none; background: radial-gradient(ellipse at 50% 45%, rgba(120,10,25,0.35), rgba(5,5,6,0) 60%)"></div>
+<div aria-hidden="true" class="swayR" style="position: absolute; left: 50%; top: 60px; width: 1100px; max-width: 120%; margin-left: -550px; pointer-events: none; opacity: 0.35"><svg viewBox="0 0 1100 760" width="100%" aria-hidden="true" style="display: block; overflow: visible"><defs><filter id="glow2" x="-20%" y="-20%" width="140%" height="140%"><feGaussianBlur stdDeviation="3" result="b"></feGaussianBlur><feMerge><feMergeNode in="b"></feMergeNode><feMergeNode in="SourceGraphic"></feMergeNode></feMerge></filter></defs><g filter="url(#glow2)"><path d="M60.0 620.0 C550.0 40.0 700.0 440.0 1080.0 120.0" stroke="#FF4057" stroke-width="1.6" stroke-opacity="0.18" fill="none"></path><path d="M62.8 619.9 C548.8 58.3 681.4 440.7 1079.9 124.9" stroke="#D3132E" stroke-width="0.9" stroke-opacity="0.23" fill="none"></path><path d="M65.6 619.4 C545.1 76.6 662.9 442.8 1079.6 129.9" stroke="#D3132E" stroke-width="0.9" stroke-opacity="0.27" fill="none"></path><path d="M68.4 618.7 C539.0 94.7 644.7 446.3 1079.1 134.7" stroke="#D3132E" stroke-width="0.9" stroke-opacity="0.32" fill="none"></path><path d="M71.1 617.6 C530.6 112.4 626.9 451.1 1078.4 139.5" stroke="#D3132E" stroke-width="0.9" stroke-opacity="0.36" fill="none"></path><path d="M73.8 616.3 C519.9 129.9 609.6 457.3 1077.5 144.2" stroke="#D3132E" stroke-width="0.9" stroke-opacity="0.40" fill="none"></path><path d="M76.4 614.7 C507.1 146.9 592.9 464.7 1076.5 148.8" stroke="#D3132E" stroke-width="0.9" stroke-opacity="0.44" fill="none"></path><path d="M79.0 612.8 C492.3 163.3 577.0 473.5 1075.2 153.2" stroke="#FF4057" stroke-width="1.6" stroke-opacity="0.48" fill="none"></path><path d="M81.4 610.7 C475.7 179.2 562.1 483.5 1073.8 157.5" stroke="#D3132E" stroke-width="0.9" stroke-opacity="0.52" fill="none"></path><path d="M83.7 608.3 C457.4 194.3 548.0 494.6 1072.2 161.5" stroke="#D3132E" stroke-width="0.9" stroke-opacity="0.55" fill="none"></path><path d="M86.0 605.7 C437.8 208.7 535.1 506.9 1070.4 165.4" stroke="#D3132E" stroke-width="0.9" stroke-opacity="0.58" fill="none"></path><path d="M88.0 602.8 C416.9 222.2 523.4 520.3 1068.5 169.1" stroke="#D3132E" stroke-width="0.9" stroke-opacity="0.60" fill="none"></path><path d="M90.0 599.7 C395.0 234.8 512.9 534.6 1066.5 172.5" stroke="#D3132E" stroke-width="0.9" stroke-opacity="0.63" fill="none"></path><path d="M91.8 596.5 C372.4 246.5 503.8 549.9 1064.3 175.6" stroke="#D3132E" stroke-width="0.9" stroke-opacity="0.64" fill="none"></path><path d="M93.4 593.0 C349.4 257.1 496.1 566.0 1062.0 178.5" stroke="#FF4057" stroke-width="1.6" stroke-opacity="0.66" fill="none"></path><path d="M94.9 589.4 C326.1 266.7 489.8 582.9 1059.6 181.0" stroke="#D3132E" stroke-width="0.9" stroke-opacity="0.67" fill="none"></path><path d="M96.2 585.6 C302.9 275.1 485.1 600.4 1057.1 183.3" stroke="#D3132E" stroke-width="0.9" stroke-opacity="0.68" fill="none"></path><path d="M97.3 581.7 C280.0 282.3 481.9 618.6 1054.5 185.2" stroke="#D3132E" stroke-width="0.9" stroke-opacity="0.68" fill="none"></path><path d="M98.2 577.7 C257.6 288.4 480.2 637.2 1051.8 186.9" stroke="#D3132E" stroke-width="0.9" stroke-opacity="0.68" fill="none"></path><path d="M99.0 573.6 C236.0 293.2 480.2 656.3 1049.1 188.2" stroke="#D3132E" stroke-width="0.9" stroke-opacity="0.67" fill="none"></path><path d="M99.5 569.5 C215.5 296.7 481.7 675.7 1046.3 189.1" stroke="#D3132E" stroke-width="0.9" stroke-opacity="0.66" fill="none"></path><path d="M99.8 565.3 C196.3 299.0 484.8 695.3 1043.5 189.7" stroke="#FF4057" stroke-width="1.6" stroke-opacity="0.65" fill="none"></path><path d="M100.0 561.1 C178.6 300.0 489.4 715.1 1040.7 190.0" stroke="#D3132E" stroke-width="0.9" stroke-opacity="0.63" fill="none"></path><path d="M99.9 556.8 C162.6 299.6 495.5 734.8 1037.9 189.9" stroke="#D3132E" stroke-width="0.9" stroke-opacity="0.61" fill="none"></path><path d="M99.7 552.6 C148.4 298.0 503.1 754.5 1035.1 189.5" stroke="#D3132E" stroke-width="0.9" stroke-opacity="0.58" fill="none"></path><path d="M99.2 548.4 C136.3 295.1 512.1 774.0 1032.3 188.7" stroke="#D3132E" stroke-width="0.9" stroke-opacity="0.55" fill="none"></path><path d="M98.6 544.3 C126.4 290.9 522.5 793.3 1029.5 187.6" stroke="#D3132E" stroke-width="0.9" stroke-opacity="0.52" fill="none"></path><path d="M97.8 540.3 C118.7 285.5 534.1 812.1 1026.8 186.1" stroke="#D3132E" stroke-width="0.9" stroke-opacity="0.49" fill="none"></path><path d="M96.7 536.3 C113.4 278.9 546.9 830.6 1024.2 184.3" stroke="#FF4057" stroke-width="1.6" stroke-opacity="0.45" fill="none"></path><path d="M95.5 532.5 C110.5 271.0 560.8 848.4 1021.7 182.2" stroke="#D3132E" stroke-width="0.9" stroke-opacity="0.41" fill="none"></path><path d="M94.2 528.8 C110.1 262.0 575.8 865.7 1019.2 179.8" stroke="#D3132E" stroke-width="0.9" stroke-opacity="0.37" fill="none"></path><path d="M92.6 525.2 C112.2 252.0 591.6 882.2 1016.8 177.1" stroke="#D3132E" stroke-width="0.9" stroke-opacity="0.33" fill="none"></path><path d="M90.9 521.9 C116.7 240.8 608.2 897.9 1014.6 174.1" stroke="#D3132E" stroke-width="0.9" stroke-opacity="0.28" fill="none"></path><path d="M89.0 518.7 C123.6 228.6 625.4 912.7 1012.5 170.8" stroke="#D3132E" stroke-width="0.9" stroke-opacity="0.24" fill="none"></path><path d="M87.0 515.7 C132.8 215.6 643.2 926.5 1010.5 167.3" stroke="#D3132E" stroke-width="0.9" stroke-opacity="0.19" fill="none"></path><path d="M84.9 513.0 C144.2 201.6 661.4 939.4 1008.7 163.5" stroke="#FF4057" stroke-width="1.6" stroke-opacity="0.22" fill="none"></path><path d="M82.6 510.5 C157.7 186.8 679.8 951.1 1007.0 159.5" stroke="#D3132E" stroke-width="0.9" stroke-opacity="0.26" fill="none"></path><path d="M80.2 508.2 C173.1 171.3 698.4 961.7 1005.5 155.4" stroke="#D3132E" stroke-width="0.9" stroke-opacity="0.31" fill="none"></path><path d="M77.7 506.2 C190.2 155.2 717.1 971.0 1004.1 151.0" stroke="#D3132E" stroke-width="0.9" stroke-opacity="0.35" fill="none"></path><path d="M75.1 504.5 C209.0 138.4 735.6 979.2 1003.0 146.5" stroke="#D3132E" stroke-width="0.9" stroke-opacity="0.39" fill="none"></path><path d="M72.5 503.0 C229.1 121.2 753.8 986.0 1002.0 141.9" stroke="#D3132E" stroke-width="0.9" stroke-opacity="0.43" fill="none"></path><path d="M69.8 501.8 C250.3 103.6 771.7 991.5 1001.2 137.1" stroke="#D3132E" stroke-width="0.9" stroke-opacity="0.47" fill="none"></path><path d="M67.0 500.9 C272.4 85.7 789.0 995.7 1000.6 132.3" stroke="#FF4057" stroke-width="1.6" stroke-opacity="0.51" fill="none"></path><path d="M64.2 500.3 C295.2 67.5 805.7 998.4 1000.2 127.4" stroke="#D3132E" stroke-width="0.9" stroke-opacity="0.54" fill="none"></path><path d="M61.4 500.0 C318.4 49.2 821.7 999.8 1000.0 122.5" stroke="#D3132E" stroke-width="0.9" stroke-opacity="0.57" fill="none"></path><path d="M58.6 500.0 C341.6 30.8 836.7 999.8 1000.0 117.5" stroke="#D3132E" stroke-width="0.9" stroke-opacity="0.60" fill="none"></path><path d="M55.8 500.3 C364.8 12.5 850.8 998.4 1000.2 112.6" stroke="#D3132E" stroke-width="0.9" stroke-opacity="0.62" fill="none"></path><path d="M53.0 500.9 C387.6 -5.7 863.8 995.7 1000.6 107.7" stroke="#D3132E" stroke-width="0.9" stroke-opacity="0.64" fill="none"></path><path d="M50.2 501.8 C409.7 -23.6 875.7 991.5 1001.2 102.9" stroke="#D3132E" stroke-width="0.9" stroke-opacity="0.66" fill="none"></path><path d="M47.5 503.0 C430.9 -41.2 886.2 986.0 1002.0 98.1" stroke="#FF4057" stroke-width="1.6" stroke-opacity="0.67" fill="none"></path><path d="M44.9 504.5 C451.0 -58.4 895.5 979.2 1003.0 93.5" stroke="#D3132E" stroke-width="0.9" stroke-opacity="0.68" fill="none"></path><path d="M42.3 506.2 C469.8 -75.2 903.3 971.0 1004.1 89.0" stroke="#D3132E" stroke-width="0.9" stroke-opacity="0.68" fill="none"></path><path d="M39.8 508.2 C486.9 -91.3 909.7 961.7 1005.5 84.6" stroke="#D3132E" stroke-width="0.9" stroke-opacity="0.68" fill="none"></path><path d="M37.4 510.5 C502.3 -106.8 914.6 951.1 1007.0 80.5" stroke="#D3132E" stroke-width="0.9" stroke-opacity="0.67" fill="none"></path><path d="M35.1 513.0 C515.8 -121.6 917.9 939.4 1008.7 76.5" stroke="#D3132E" stroke-width="0.9" stroke-opacity="0.67" fill="none"></path><path d="M33.0 515.7 C527.2 -135.6 919.7 926.5 1010.5 72.7" stroke="#D3132E" stroke-width="0.9" stroke-opacity="0.65" fill="none"></path><path d="M31.0 518.7 C536.4 -148.6 919.9 912.7 1012.5 69.2" stroke="#FF4057" stroke-width="1.6" stroke-opacity="0.64" fill="none"></path><path d="M29.1 521.9 C543.3 -160.8 918.5 897.9 1014.6 65.9" stroke="#D3132E" stroke-width="0.9" stroke-opacity="0.61" fill="none"></path><path d="M27.4 525.2 C547.8 -172.0 915.6 882.2 1016.8 62.9" stroke="#D3132E" stroke-width="0.9" stroke-opacity="0.59" fill="none"></path><path d="M25.8 528.8 C549.9 -182.0 911.1 865.7 1019.2 60.2" stroke="#D3132E" stroke-width="0.9" stroke-opacity="0.56" fill="none"></path><path d="M24.5 532.5 C549.5 -191.0 905.1 848.4 1021.7 57.8" stroke="#D3132E" stroke-width="0.9" stroke-opacity="0.53" fill="none"></path><path d="M23.3 536.3 C546.6 -198.9 897.6 830.6 1024.2 55.7" stroke="#D3132E" stroke-width="0.9" stroke-opacity="0.50" fill="none"></path><path d="M22.2 540.3 C541.3 -205.5 888.7 812.1 1026.8 53.9" stroke="#D3132E" stroke-width="0.9" stroke-opacity="0.46" fill="none"></path><path d="M21.4 544.3 C533.6 -210.9 878.4 793.3 1029.5 52.4" stroke="#FF4057" stroke-width="1.6" stroke-opacity="0.42" fill="none"></path><path d="M20.8 548.4 C523.7 -215.1 866.9 774.0 1032.3 51.3" stroke="#D3132E" stroke-width="0.9" stroke-opacity="0.38" fill="none"></path><path d="M20.3 552.6 C511.6 -218.0 854.2 754.5 1035.1 50.5" stroke="#D3132E" stroke-width="0.9" stroke-opacity="0.34" fill="none"></path><path d="M20.1 556.8 C497.4 -219.6 840.4 734.8 1037.9 50.1" stroke="#D3132E" stroke-width="0.9" stroke-opacity="0.29" fill="none"></path><path d="M20.0 561.1 C481.4 -220.0 825.5 715.1 1040.7 50.0" stroke="#D3132E" stroke-width="0.9" stroke-opacity="0.25" fill="none"></path><path d="M20.2 565.3 C463.7 -219.0 809.8 695.3 1043.5 50.3" stroke="#D3132E" stroke-width="0.9" stroke-opacity="0.20" fill="none"></path><path d="M20.5 569.5 C444.5 -216.7 793.2 675.7 1046.3 50.9" stroke="#D3132E" stroke-width="0.9" stroke-opacity="0.20" fill="none"></path><path d="M21.0 573.6 C424.0 -213.2 776.1 656.3 1049.1 51.8" stroke="#FF4057" stroke-width="1.6" stroke-opacity="0.25" fill="none"></path><path d="M21.8 577.7 C402.4 -208.4 758.3 637.2 1051.8 53.1" stroke="#D3132E" stroke-width="0.9" stroke-opacity="0.30" fill="none"></path><path d="M22.7 581.7 C380.0 -202.3 740.2 618.6 1054.5 54.8" stroke="#D3132E" stroke-width="0.9" stroke-opacity="0.34" fill="none"></path><path d="M23.8 585.6 C357.1 -195.1 721.7 600.4 1057.1 56.7" stroke="#D3132E" stroke-width="0.9" stroke-opacity="0.38" fill="none"></path><path d="M25.1 589.4 C333.9 -186.7 703.1 582.9 1059.6 59.0" stroke="#D3132E" stroke-width="0.9" stroke-opacity="0.42" fill="none"></path><path d="M26.6 593.0 C310.6 -177.1 684.5 566.0 1062.0 61.5" stroke="#D3132E" stroke-width="0.9" stroke-opacity="0.46" fill="none"></path><path d="M28.2 596.5 C287.6 -166.5 666.0 549.9 1064.3 64.4" stroke="#D3132E" stroke-width="0.9" stroke-opacity="0.50" fill="none"></path><path d="M30.0 599.7 C265.0 -154.8 647.7 534.6 1066.5 67.5" stroke="#FF4057" stroke-width="1.6" stroke-opacity="0.53" fill="none"></path><path d="M32.0 602.8 C243.1 -142.2 629.8 520.3 1068.5 70.9" stroke="#D3132E" stroke-width="0.9" stroke-opacity="0.56" fill="none"></path><path d="M34.0 605.7 C222.2 -128.7 612.4 506.9 1070.4 74.6" stroke="#D3132E" stroke-width="0.9" stroke-opacity="0.59" fill="none"></path><path d="M36.3 608.3 C202.6 -114.3 595.7 494.6 1072.2 78.5" stroke="#D3132E" stroke-width="0.9" stroke-opacity="0.62" fill="none"></path><path d="M38.6 610.7 C184.3 -99.2 579.6 483.5 1073.8 82.5" stroke="#D3132E" stroke-width="0.9" stroke-opacity="0.64" fill="none"></path><path d="M41.0 612.8 C167.7 -83.3 564.5 473.5 1075.2 86.8" stroke="#D3132E" stroke-width="0.9" stroke-opacity="0.65" fill="none"></path><path d="M43.6 614.7 C152.9 -66.9 550.3 464.7 1076.5 91.2" stroke="#D3132E" stroke-width="0.9" stroke-opacity="0.67" fill="none"></path><path d="M46.2 616.3 C140.1 -49.9 537.2 457.3 1077.5 95.8" stroke="#FF4057" stroke-width="1.6" stroke-opacity="0.67" fill="none"></path><path d="M48.9 617.6 C129.4 -32.4 525.3 451.1 1078.4 100.5" stroke="#D3132E" stroke-width="0.9" stroke-opacity="0.68" fill="none"></path><path d="M51.6 618.7 C121.0 -14.7 514.6 446.3 1079.1 105.3" stroke="#D3132E" stroke-width="0.9" stroke-opacity="0.68" fill="none"></path><path d="M54.4 619.4 C114.9 3.4 505.2 442.8 1079.6 110.1" stroke="#D3132E" stroke-width="0.9" stroke-opacity="0.68" fill="none"></path><path d="M57.2 619.9 C111.2 21.7 497.3 440.7 1079.9 115.1" stroke="#D3132E" stroke-width="0.9" stroke-opacity="0.67" fill="none"></path><path d="M60.0 620.0 C110.0 40.0 490.8 440.0 1080.0 120.0" stroke="#D3132E" stroke-width="0.9" stroke-opacity="0.66" fill="none"></path></g></svg></div>
+<div aria-hidden="true" class="sway" style="position: absolute; left: 50%; top: 40px; width: 1100px; max-width: 120%; margin-left: -550px; pointer-events: none">
+<svg viewBox="0 0 1100 760" width="100%" aria-hidden="true" style="display: block; overflow: visible"><defs><filter id="glow" x="-20%" y="-20%" width="140%" height="140%"><feGaussianBlur stdDeviation="3" result="b"></feGaussianBlur><feMerge><feMergeNode in="b"></feMergeNode><feMergeNode in="SourceGraphic"></feMergeNode></feMerge></filter></defs><g filter="url(#glow)"><path d="M60.0 620.0 C550.0 40.0 700.0 440.0 1080.0 120.0" stroke="#FF4057" stroke-width="1.6" stroke-opacity="0.18" fill="none"></path><path d="M62.8 619.9 C548.8 58.3 681.4 440.7 1079.9 124.9" stroke="#D3132E" stroke-width="0.9" stroke-opacity="0.23" fill="none"></path><path d="M65.6 619.4 C545.1 76.6 662.9 442.8 1079.6 129.9" stroke="#D3132E" stroke-width="0.9" stroke-opacity="0.27" fill="none"></path><path d="M68.4 618.7 C539.0 94.7 644.7 446.3 1079.1 134.7" stroke="#D3132E" stroke-width="0.9" stroke-opacity="0.32" fill="none"></path><path d="M71.1 617.6 C530.6 112.4 626.9 451.1 1078.4 139.5" stroke="#D3132E" stroke-width="0.9" stroke-opacity="0.36" fill="none"></path><path d="M73.8 616.3 C519.9 129.9 609.6 457.3 1077.5 144.2" stroke="#D3132E" stroke-width="0.9" stroke-opacity="0.40" fill="none"></path><path d="M76.4 614.7 C507.1 146.9 592.9 464.7 1076.5 148.8" stroke="#D3132E" stroke-width="0.9" stroke-opacity="0.44" fill="none"></path><path d="M79.0 612.8 C492.3 163.3 577.0 473.5 1075.2 153.2" stroke="#FF4057" stroke-width="1.6" stroke-opacity="0.48" fill="none"></path><path d="M81.4 610.7 C475.7 179.2 562.1 483.5 1073.8 157.5" stroke="#D3132E" stroke-width="0.9" stroke-opacity="0.52" fill="none"></path><path d="M83.7 608.3 C457.4 194.3 548.0 494.6 1072.2 161.5" stroke="#D3132E" stroke-width="0.9" stroke-opacity="0.55" fill="none"></path><path d="M86.0 605.7 C437.8 208.7 535.1 506.9 1070.4 165.4" stroke="#D3132E" stroke-width="0.9" stroke-opacity="0.58" fill="none"></path><path d="M88.0 602.8 C416.9 222.2 523.4 520.3 1068.5 169.1" stroke="#D3132E" stroke-width="0.9" stroke-opacity="0.60" fill="none"></path><path d="M90.0 599.7 C395.0 234.8 512.9 534.6 1066.5 172.5" stroke="#D3132E" stroke-width="0.9" stroke-opacity="0.63" fill="none"></path><path d="M91.8 596.5 C372.4 246.5 503.8 549.9 1064.3 175.6" stroke="#D3132E" stroke-width="0.9" stroke-opacity="0.64" fill="none"></path><path d="M93.4 593.0 C349.4 257.1 496.1 566.0 1062.0 178.5" stroke="#FF4057" stroke-width="1.6" stroke-opacity="0.66" fill="none"></path><path d="M94.9 589.4 C326.1 266.7 489.8 582.9 1059.6 181.0" stroke="#D3132E" stroke-width="0.9" stroke-opacity="0.67" fill="none"></path><path d="M96.2 585.6 C302.9 275.1 485.1 600.4 1057.1 183.3" stroke="#D3132E" stroke-width="0.9" stroke-opacity="0.68" fill="none"></path><path d="M97.3 581.7 C280.0 282.3 481.9 618.6 1054.5 185.2" stroke="#D3132E" stroke-width="0.9" stroke-opacity="0.68" fill="none"></path><path d="M98.2 577.7 C257.6 288.4 480.2 637.2 1051.8 186.9" stroke="#D3132E" stroke-width="0.9" stroke-opacity="0.68" fill="none"></path><path d="M99.0 573.6 C236.0 293.2 480.2 656.3 1049.1 188.2" stroke="#D3132E" stroke-width="0.9" stroke-opacity="0.67" fill="none"></path><path d="M99.5 569.5 C215.5 296.7 481.7 675.7 1046.3 189.1" stroke="#D3132E" stroke-width="0.9" stroke-opacity="0.66" fill="none"></path><path d="M99.8 565.3 C196.3 299.0 484.8 695.3 1043.5 189.7" stroke="#FF4057" stroke-width="1.6" stroke-opacity="0.65" fill="none"></path><path d="M100.0 561.1 C178.6 300.0 489.4 715.1 1040.7 190.0" stroke="#D3132E" stroke-width="0.9" stroke-opacity="0.63" fill="none"></path><path d="M99.9 556.8 C162.6 299.6 495.5 734.8 1037.9 189.9" stroke="#D3132E" stroke-width="0.9" stroke-opacity="0.61" fill="none"></path><path d="M99.7 552.6 C148.4 298.0 503.1 754.5 1035.1 189.5" stroke="#D3132E" stroke-width="0.9" stroke-opacity="0.58" fill="none"></path><path d="M99.2 548.4 C136.3 295.1 512.1 774.0 1032.3 188.7" stroke="#D3132E" stroke-width="0.9" stroke-opacity="0.55" fill="none"></path><path d="M98.6 544.3 C126.4 290.9 522.5 793.3 1029.5 187.6" stroke="#D3132E" stroke-width="0.9" stroke-opacity="0.52" fill="none"></path><path d="M97.8 540.3 C118.7 285.5 534.1 812.1 1026.8 186.1" stroke="#D3132E" stroke-width="0.9" stroke-opacity="0.49" fill="none"></path><path d="M96.7 536.3 C113.4 278.9 546.9 830.6 1024.2 184.3" stroke="#FF4057" stroke-width="1.6" stroke-opacity="0.45" fill="none"></path><path d="M95.5 532.5 C110.5 271.0 560.8 848.4 1021.7 182.2" stroke="#D3132E" stroke-width="0.9" stroke-opacity="0.41" fill="none"></path><path d="M94.2 528.8 C110.1 262.0 575.8 865.7 1019.2 179.8" stroke="#D3132E" stroke-width="0.9" stroke-opacity="0.37" fill="none"></path><path d="M92.6 525.2 C112.2 252.0 591.6 882.2 1016.8 177.1" stroke="#D3132E" stroke-width="0.9" stroke-opacity="0.33" fill="none"></path><path d="M90.9 521.9 C116.7 240.8 608.2 897.9 1014.6 174.1" stroke="#D3132E" stroke-width="0.9" stroke-opacity="0.28" fill="none"></path><path d="M89.0 518.7 C123.6 228.6 625.4 912.7 1012.5 170.8" stroke="#D3132E" stroke-width="0.9" stroke-opacity="0.24" fill="none"></path><path d="M87.0 515.7 C132.8 215.6 643.2 926.5 1010.5 167.3" stroke="#D3132E" stroke-width="0.9" stroke-opacity="0.19" fill="none"></path><path d="M84.9 513.0 C144.2 201.6 661.4 939.4 1008.7 163.5" stroke="#FF4057" stroke-width="1.6" stroke-opacity="0.22" fill="none"></path><path d="M82.6 510.5 C157.7 186.8 679.8 951.1 1007.0 159.5" stroke="#D3132E" stroke-width="0.9" stroke-opacity="0.26" fill="none"></path><path d="M80.2 508.2 C173.1 171.3 698.4 961.7 1005.5 155.4" stroke="#D3132E" stroke-width="0.9" stroke-opacity="0.31" fill="none"></path><path d="M77.7 506.2 C190.2 155.2 717.1 971.0 1004.1 151.0" stroke="#D3132E" stroke-width="0.9" stroke-opacity="0.35" fill="none"></path><path d="M75.1 504.5 C209.0 138.4 735.6 979.2 1003.0 146.5" stroke="#D3132E" stroke-width="0.9" stroke-opacity="0.39" fill="none"></path><path d="M72.5 503.0 C229.1 121.2 753.8 986.0 1002.0 141.9" stroke="#D3132E" stroke-width="0.9" stroke-opacity="0.43" fill="none"></path><path d="M69.8 501.8 C250.3 103.6 771.7 991.5 1001.2 137.1" stroke="#D3132E" stroke-width="0.9" stroke-opacity="0.47" fill="none"></path><path d="M67.0 500.9 C272.4 85.7 789.0 995.7 1000.6 132.3" stroke="#FF4057" stroke-width="1.6" stroke-opacity="0.51" fill="none"></path><path d="M64.2 500.3 C295.2 67.5 805.7 998.4 1000.2 127.4" stroke="#D3132E" stroke-width="0.9" stroke-opacity="0.54" fill="none"></path><path d="M61.4 500.0 C318.4 49.2 821.7 999.8 1000.0 122.5" stroke="#D3132E" stroke-width="0.9" stroke-opacity="0.57" fill="none"></path><path d="M58.6 500.0 C341.6 30.8 836.7 999.8 1000.0 117.5" stroke="#D3132E" stroke-width="0.9" stroke-opacity="0.60" fill="none"></path><path d="M55.8 500.3 C364.8 12.5 850.8 998.4 1000.2 112.6" stroke="#D3132E" stroke-width="0.9" stroke-opacity="0.62" fill="none"></path><path d="M53.0 500.9 C387.6 -5.7 863.8 995.7 1000.6 107.7" stroke="#D3132E" stroke-width="0.9" stroke-opacity="0.64" fill="none"></path><path d="M50.2 501.8 C409.7 -23.6 875.7 991.5 1001.2 102.9" stroke="#D3132E" stroke-width="0.9" stroke-opacity="0.66" fill="none"></path><path d="M47.5 503.0 C430.9 -41.2 886.2 986.0 1002.0 98.1" stroke="#FF4057" stroke-width="1.6" stroke-opacity="0.67" fill="none"></path><path d="M44.9 504.5 C451.0 -58.4 895.5 979.2 1003.0 93.5" stroke="#D3132E" stroke-width="0.9" stroke-opacity="0.68" fill="none"></path><path d="M42.3 506.2 C469.8 -75.2 903.3 971.0 1004.1 89.0" stroke="#D3132E" stroke-width="0.9" stroke-opacity="0.68" fill="none"></path><path d="M39.8 508.2 C486.9 -91.3 909.7 961.7 1005.5 84.6" stroke="#D3132E" stroke-width="0.9" stroke-opacity="0.68" fill="none"></path><path d="M37.4 510.5 C502.3 -106.8 914.6 951.1 1007.0 80.5" stroke="#D3132E" stroke-width="0.9" stroke-opacity="0.67" fill="none"></path><path d="M35.1 513.0 C515.8 -121.6 917.9 939.4 1008.7 76.5" stroke="#D3132E" stroke-width="0.9" stroke-opacity="0.67" fill="none"></path><path d="M33.0 515.7 C527.2 -135.6 919.7 926.5 1010.5 72.7" stroke="#D3132E" stroke-width="0.9" stroke-opacity="0.65" fill="none"></path><path d="M31.0 518.7 C536.4 -148.6 919.9 912.7 1012.5 69.2" stroke="#FF4057" stroke-width="1.6" stroke-opacity="0.64" fill="none"></path><path d="M29.1 521.9 C543.3 -160.8 918.5 897.9 1014.6 65.9" stroke="#D3132E" stroke-width="0.9" stroke-opacity="0.61" fill="none"></path><path d="M27.4 525.2 C547.8 -172.0 915.6 882.2 1016.8 62.9" stroke="#D3132E" stroke-width="0.9" stroke-opacity="0.59" fill="none"></path><path d="M25.8 528.8 C549.9 -182.0 911.1 865.7 1019.2 60.2" stroke="#D3132E" stroke-width="0.9" stroke-opacity="0.56" fill="none"></path><path d="M24.5 532.5 C549.5 -191.0 905.1 848.4 1021.7 57.8" stroke="#D3132E" stroke-width="0.9" stroke-opacity="0.53" fill="none"></path><path d="M23.3 536.3 C546.6 -198.9 897.6 830.6 1024.2 55.7" stroke="#D3132E" stroke-width="0.9" stroke-opacity="0.50" fill="none"></path><path d="M22.2 540.3 C541.3 -205.5 888.7 812.1 1026.8 53.9" stroke="#D3132E" stroke-width="0.9" stroke-opacity="0.46" fill="none"></path><path d="M21.4 544.3 C533.6 -210.9 878.4 793.3 1029.5 52.4" stroke="#FF4057" stroke-width="1.6" stroke-opacity="0.42" fill="none"></path><path d="M20.8 548.4 C523.7 -215.1 866.9 774.0 1032.3 51.3" stroke="#D3132E" stroke-width="0.9" stroke-opacity="0.38" fill="none"></path><path d="M20.3 552.6 C511.6 -218.0 854.2 754.5 1035.1 50.5" stroke="#D3132E" stroke-width="0.9" stroke-opacity="0.34" fill="none"></path><path d="M20.1 556.8 C497.4 -219.6 840.4 734.8 1037.9 50.1" stroke="#D3132E" stroke-width="0.9" stroke-opacity="0.29" fill="none"></path><path d="M20.0 561.1 C481.4 -220.0 825.5 715.1 1040.7 50.0" stroke="#D3132E" stroke-width="0.9" stroke-opacity="0.25" fill="none"></path><path d="M20.2 565.3 C463.7 -219.0 809.8 695.3 1043.5 50.3" stroke="#D3132E" stroke-width="0.9" stroke-opacity="0.20" fill="none"></path><path d="M20.5 569.5 C444.5 -216.7 793.2 675.7 1046.3 50.9" stroke="#D3132E" stroke-width="0.9" stroke-opacity="0.20" fill="none"></path><path d="M21.0 573.6 C424.0 -213.2 776.1 656.3 1049.1 51.8" stroke="#FF4057" stroke-width="1.6" stroke-opacity="0.25" fill="none"></path><path d="M21.8 577.7 C402.4 -208.4 758.3 637.2 1051.8 53.1" stroke="#D3132E" stroke-width="0.9" stroke-opacity="0.30" fill="none"></path><path d="M22.7 581.7 C380.0 -202.3 740.2 618.6 1054.5 54.8" stroke="#D3132E" stroke-width="0.9" stroke-opacity="0.34" fill="none"></path><path d="M23.8 585.6 C357.1 -195.1 721.7 600.4 1057.1 56.7" stroke="#D3132E" stroke-width="0.9" stroke-opacity="0.38" fill="none"></path><path d="M25.1 589.4 C333.9 -186.7 703.1 582.9 1059.6 59.0" stroke="#D3132E" stroke-width="0.9" stroke-opacity="0.42" fill="none"></path><path d="M26.6 593.0 C310.6 -177.1 684.5 566.0 1062.0 61.5" stroke="#D3132E" stroke-width="0.9" stroke-opacity="0.46" fill="none"></path><path d="M28.2 596.5 C287.6 -166.5 666.0 549.9 1064.3 64.4" stroke="#D3132E" stroke-width="0.9" stroke-opacity="0.50" fill="none"></path><path d="M30.0 599.7 C265.0 -154.8 647.7 534.6 1066.5 67.5" stroke="#FF4057" stroke-width="1.6" stroke-opacity="0.53" fill="none"></path><path d="M32.0 602.8 C243.1 -142.2 629.8 520.3 1068.5 70.9" stroke="#D3132E" stroke-width="0.9" stroke-opacity="0.56" fill="none"></path><path d="M34.0 605.7 C222.2 -128.7 612.4 506.9 1070.4 74.6" stroke="#D3132E" stroke-width="0.9" stroke-opacity="0.59" fill="none"></path><path d="M36.3 608.3 C202.6 -114.3 595.7 494.6 1072.2 78.5" stroke="#D3132E" stroke-width="0.9" stroke-opacity="0.62" fill="none"></path><path d="M38.6 610.7 C184.3 -99.2 579.6 483.5 1073.8 82.5" stroke="#D3132E" stroke-width="0.9" stroke-opacity="0.64" fill="none"></path><path d="M41.0 612.8 C167.7 -83.3 564.5 473.5 1075.2 86.8" stroke="#D3132E" stroke-width="0.9" stroke-opacity="0.65" fill="none"></path><path d="M43.6 614.7 C152.9 -66.9 550.3 464.7 1076.5 91.2" stroke="#D3132E" stroke-width="0.9" stroke-opacity="0.67" fill="none"></path><path d="M46.2 616.3 C140.1 -49.9 537.2 457.3 1077.5 95.8" stroke="#FF4057" stroke-width="1.6" stroke-opacity="0.67" fill="none"></path><path d="M48.9 617.6 C129.4 -32.4 525.3 451.1 1078.4 100.5" stroke="#D3132E" stroke-width="0.9" stroke-opacity="0.68" fill="none"></path><path d="M51.6 618.7 C121.0 -14.7 514.6 446.3 1079.1 105.3" stroke="#D3132E" stroke-width="0.9" stroke-opacity="0.68" fill="none"></path><path d="M54.4 619.4 C114.9 3.4 505.2 442.8 1079.6 110.1" stroke="#D3132E" stroke-width="0.9" stroke-opacity="0.68" fill="none"></path><path d="M57.2 619.9 C111.2 21.7 497.3 440.7 1079.9 115.1" stroke="#D3132E" stroke-width="0.9" stroke-opacity="0.67" fill="none"></path><path d="M60.0 620.0 C110.0 40.0 490.8 440.0 1080.0 120.0" stroke="#D3132E" stroke-width="0.9" stroke-opacity="0.66" fill="none"></path></g></svg><svg viewBox="0 0 1100 760" width="100%" aria-hidden="true" style="position: absolute; inset: 0; overflow: visible"><path class="flowL" d="M60.0 620.0 C550.0 40.0 700.0 440.0 1080.0 120.0" fill="none" stroke="#FFFFFF" stroke-width="2.4" stroke-linecap="round" style="--t: 1.60s; animation-delay: -0.00s; filter: drop-shadow(0 0 6px #FF3B55)"></path><path class="flowL" d="M79.0 612.8 C492.3 163.3 577.0 473.5 1075.2 153.2" fill="none" stroke="#FF5A6E" stroke-width="1.8" stroke-linecap="round" style="--t: 1.95s; animation-delay: -0.37s; filter: drop-shadow(0 0 6px #FF3B55)"></path><path class="flowL" d="M93.4 593.0 C349.4 257.1 496.1 566.0 1062.0 178.5" fill="none" stroke="#FF5A6E" stroke-width="1.8" stroke-linecap="round" style="--t: 2.30s; animation-delay: -0.74s; filter: drop-shadow(0 0 6px #FF3B55)"></path><path class="flowL" d="M99.8 565.3 C196.3 299.0 484.8 695.3 1043.5 189.7" fill="none" stroke="#FFFFFF" stroke-width="2.4" stroke-linecap="round" style="--t: 2.65s; animation-delay: -1.11s; filter: drop-shadow(0 0 6px #FF3B55)"></path><path class="flowL" d="M96.7 536.3 C113.4 278.9 546.9 830.6 1024.2 184.3" fill="none" stroke="#FF5A6E" stroke-width="1.8" stroke-linecap="round" style="--t: 3.00s; animation-delay: -1.48s; filter: drop-shadow(0 0 6px #FF3B55)"></path><path class="flowL" d="M84.9 513.0 C144.2 201.6 661.4 939.4 1008.7 163.5" fill="none" stroke="#FF5A6E" stroke-width="1.8" stroke-linecap="round" style="--t: 1.60s; animation-delay: -1.85s; filter: drop-shadow(0 0 6px #FF3B55)"></path><path class="flowL" d="M67.0 500.9 C272.4 85.7 789.0 995.7 1000.6 132.3" fill="none" stroke="#FFFFFF" stroke-width="2.4" stroke-linecap="round" style="--t: 1.95s; animation-delay: -0.22s; filter: drop-shadow(0 0 6px #FF3B55)"></path><path class="flowL" d="M47.5 503.0 C430.9 -41.2 886.2 986.0 1002.0 98.1" fill="none" stroke="#FF5A6E" stroke-width="1.8" stroke-linecap="round" style="--t: 2.30s; animation-delay: -0.59s; filter: drop-shadow(0 0 6px #FF3B55)"></path><path class="flowL" d="M31.0 518.7 C536.4 -148.6 919.9 912.7 1012.5 69.2" fill="none" stroke="#FF5A6E" stroke-width="1.8" stroke-linecap="round" style="--t: 2.65s; animation-delay: -0.96s; filter: drop-shadow(0 0 6px #FF3B55)"></path><path class="flowL" d="M21.4 544.3 C533.6 -210.9 878.4 793.3 1029.5 52.4" fill="none" stroke="#FFFFFF" stroke-width="2.4" stroke-linecap="round" style="--t: 3.00s; animation-delay: -1.33s; filter: drop-shadow(0 0 6px #FF3B55)"></path><path class="flowL" d="M21.0 573.6 C424.0 -213.2 776.1 656.3 1049.1 51.8" fill="none" stroke="#FF5A6E" stroke-width="1.8" stroke-linecap="round" style="--t: 1.60s; animation-delay: -1.70s; filter: drop-shadow(0 0 6px #FF3B55)"></path><path class="flowL" d="M30.0 599.7 C265.0 -154.8 647.7 534.6 1066.5 67.5" fill="none" stroke="#FF5A6E" stroke-width="1.8" stroke-linecap="round" style="--t: 1.95s; animation-delay: -0.07s; filter: drop-shadow(0 0 6px #FF3B55)"></path><path class="flowL" d="M46.2 616.3 C140.1 -49.9 537.2 457.3 1077.5 95.8" fill="none" stroke="#FFFFFF" stroke-width="2.4" stroke-linecap="round" style="--t: 2.30s; animation-delay: -0.44s; filter: drop-shadow(0 0 6px #FF3B55)"></path></svg>
+</div>
+<div aria-hidden="true" class="pulseR" style="position: absolute; left: 50%; top: 42%; width: 900px; height: 600px; margin: -300px 0 0 -450px; border-radius: 50%; background: radial-gradient(circle, rgba(200,16,46,0.35), rgba(5,5,6,0) 62%); pointer-events: none"></div>
+<div aria-hidden="true" style="position: absolute; inset: 0; overflow: hidden; pointer-events: none">
+<div class="scanY" style="background: linear-gradient(90deg, rgba(200,16,46,0), rgba(255,90,110,0.7), rgba(200,16,46,0)); box-shadow: 0 0 18px #C8102E"></div>
+<template data-sc="for" list="{{sparks}}" as="p" hint-placeholder-count="34"><span class="spark" style="left: {{p.x}}; width: {{p.s}}; height: {{p.s}}; background: {{p.c}}; box-shadow: 0 0 10px {{p.c}}; --t: {{p.t}}; --dx: {{p.dx}}; animation-delay: {{p.d}}"></span></template>
+</div>
+<div style="position: relative; max-width: 1280px; width: 100%; margin: 0 auto; padding: 0 56px 72px; box-sizing: border-box; text-align: center">
+<p style="margin: 0 0 14px; font-family: 'Geist Mono', monospace; font-size: 13px; letter-spacing: 0.1em; color: #FF9AA5">仕事の「めんどう」を、なくしていく。</p>
+<h1 style="margin: 0; font-family: 'Geist', sans-serif; font-weight: 700; font-size: clamp(44px, 6.5vw, 96px); line-height: 1.1; color: #F1F1FF; letter-spacing: -0.01em"><span style="white-space: nowrap">ORIGAMI GRP is</span><br><span class="jolt" style="white-space: nowrap; font-family: 'Geist Mono', monospace; font-weight: 400; color: #FFFFFF">〈{{word}}<span class="caret" style="color: {{red}}">_</span>〉</span></h1>
+<p style="margin: 20px 0 0; font-size: clamp(18px, 2vw, 24px); font-weight: 700; color: #F1F1FF; letter-spacing: 0.08em">時間を生み、本当にやりたい仕事へ。</p>
+<p style="margin: 10px auto 0; max-width: 640px; font-size: 15px"><span style="display: inline-block">業務の自動化からアプリ・HP開発、名刺・広告まで。</span><span style="display: inline-block">自らも複数の事業を営む私たちが、現場目線でカタチにします。</span></p>
+<p style="margin: 28px 0 0; font-family: 'Geist Mono', monospace; font-size: 12px; letter-spacing: 0.2em">〈↓ Scroll ↓〉</p>
+</div>
+</section>
+
+<!-- About -->
+<section id="about" style="position: relative">
+<div style="max-width: 1280px; margin: 0 auto; padding: 120px 56px 140px; display: flex; flex-wrap: wrap; gap: 32px 64px; align-items: flex-start">
+<h2 style="flex: 0 0 160px; margin: 12px 0 0; font-family: 'Geist Mono', monospace; font-weight: 500; font-size: 14px; color: #F1F1FF">［ About us ］</h2>
+<div style="flex: 1 1 640px; min-width: 0">
+<p style="margin: 0 0 20px; font-family: 'Geist', sans-serif; font-weight: 600; font-size: clamp(36px, 4.5vw, 64px); line-height: 1.15; color: #F1F1FF"><span style="display: inline-block; white-space: nowrap; margin-right: 0.3em">ORIGAMI GRP is</span><span style="display: inline-block; white-space: nowrap; font-family: 'Geist Mono', monospace; font-weight: 400">〈Practical.〉</span></p>
+<p style="margin: 0 0 28px; font-size: clamp(22px, 2.6vw, 34px); font-weight: 900; line-height: 1.6; color: #F1F1FF">実業を回している私たちだから、<br>机上の空論ではない仕組みをつくれる。</p>
+<p style="margin: 0 0 32px; max-width: 640px; font-size: 15px"><span style="display: inline-block">ORIGAMI GRPは、飲食店・ライティングスクール・不動産・電気料金削減事業を自ら運営する事業グループです。</span><span style="display: inline-block">日々の現場で感じる「この作業、なんとかならないか」を解決してきた経験を、御社の業務改善に活かします。</span><span style="display: inline-block">「こんなこともできる？」という段階からお気軽にご相談ください。</span></p>
+<a href="#group" style="font-family: 'Geist Mono', monospace; font-size: 14px; text-decoration: none; color: #FF9AA5">〈Our Business →〉</a>
+</div>
+</div>
+</section>
+
+<!-- Service -->
+<section id="service" style="position: relative; background: #0B0B0E; border-top: 1px solid rgba(241,241,255,0.08)">
+<div style="max-width: 1280px; margin: 0 auto; padding: 120px 56px 140px">
+<div style="display: flex; flex-wrap: wrap; gap: 24px 64px; margin-bottom: 48px">
+<h2 style="flex: 0 0 160px; margin: 12px 0 0; font-family: 'Geist Mono', monospace; font-weight: 500; font-size: 14px; color: #F1F1FF">［ Service ］</h2>
+<p style="flex: 1 1 560px; min-width: 0; margin: 0; font-size: 16px"><span style="display: inline-block">業務の自動化・AI活用から、アプリ開発、ホームページ制作、名刺・広告のデザインまで。</span><span style="display: inline-block">ビジネスに必要な「仕組み」と「見せ方」を、まとめてお任せいただけます。</span></p>
+</div>
+<div role="tablist" aria-label="サービス" class="svList" style="display: flex; flex-wrap: wrap; gap: 8px; border-bottom: 1px solid rgba(241,241,255,0.12); padding: 4px 0 16px; margin-bottom: 40px">
+<template data-sc="for" list="{{tabs}}" as="t" hint-placeholder-count="5">
+<template data-sc="if" value="{{t.on}}" hint-placeholder-val="{{ false }}">
+<button type="button" role="tab" aria-selected="true" onClick="{{t.pick}}" class="svTab svOn {{t.wide}}"><span class="no">［{{t.no}}］</span>{{t.jp}}<template data-sc="if" value="{{auto}}" hint-placeholder-val="{{ true }}"><span aria-hidden="true" class="svBar {{barCls}}"></span></template></button>
+</template>
+<template data-sc="if" value="{{t.off}}" hint-placeholder-val="{{ true }}">
+<button type="button" role="tab" aria-selected="false" onClick="{{t.pick}}" class="svTab svOff {{t.wide}}"><span class="no">［{{t.no}}］</span>{{t.jp}}</button>
+</template>
+</template>
+</div>
+<div class="{{panCls}}" style="display: flex; flex-wrap: wrap; gap: 40px 64px; align-items: stretch">
+<div style="flex: 1 1 480px; min-width: 0">
+<p style="margin: 0 0 8px; font-family: 'Geist Mono', monospace; font-size: 13px; color: #FF9AA5">〈 {{cur.jp}} 〉</p>
+<h3 style="margin: 0 0 20px; font-size: clamp(26px, 3vw, 40px); font-weight: 900; line-height: 1.4; color: #F1F1FF"><template data-sc="for" list="{{cur.parts}}" as="p" hint-placeholder-count="2"><span style="display: inline-block">{{p}}</span></template></h3>
+<p style="margin: 0 0 28px; font-size: 15px; max-width: 560px">{{cur.body}}</p>
+<ul style="list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 10px; font-family: 'Geist Mono', monospace; font-size: 13px">
+<template data-sc="for" list="{{cur.points}}" as="pt" hint-placeholder-count="3">
+<li style="display: flex; gap: 12px"><span style="color: #FF9AA5">→</span><span style="font-family: 'Noto Sans JP', sans-serif; font-size: 14px">{{pt}}</span></li>
+</template>
+</ul>
+</div>
+<div style="flex: 1 1 420px; min-width: 0; border: 1px solid rgba(241,241,255,0.12); border-radius: 8px; background: #08080A; font-family: 'Geist Mono', monospace; font-size: 13px; overflow: hidden">
+<div style="display: flex; align-items: center; gap: 8px; padding: 12px 16px; border-bottom: 1px solid rgba(241,241,255,0.1)"><span style="width: 10px; height: 10px; border-radius: 50%; background: {{red}}"></span><span style="width: 10px; height: 10px; border-radius: 50%; background: rgba(241,241,255,0.25)"></span><span style="width: 10px; height: 10px; border-radius: 50%; background: rgba(241,241,255,0.25)"></span><span style="margin-left: 8px; font-size: 12px">origami/{{cur.file}}</span></div>
+<div style="display: flex; padding: 20px 0">
+<div aria-hidden="true" style="flex: 0 0 44px; text-align: right; padding-right: 14px; color: rgba(241,241,255,0.3); line-height: 2">1<br>2<br>3<br>4<br>5<br>6<br>7</div>
+<div style="flex: 1 1 auto; min-width: 0; line-height: 2; color: #F1F1FF; white-space: pre-wrap">{{cur.code}}</div>
+</div>
+</div>
+</div>
+<div style="margin-top: 72px; border: 1px solid rgba(241,241,255,0.14); border-radius: 8px; padding: 32px 32px 28px">
+<p style="margin: 0 0 20px; font-family: 'Geist Mono', monospace; font-size: 13px; color: #F1F1FF">〈 Price 〉 制作費の目安</p>
+<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 24px">
+<div><p style="margin: 0 0 4px; font-size: 14px">小規模ツール</p><p style="margin: 0; font-family: 'Geist', sans-serif; font-weight: 300; font-size: 48px; line-height: 1.1; color: #F1F1FF">3<span style="font-family: 'Noto Sans JP'; font-size: 18px; font-weight: 700">万円〜</span></p></div>
+<div><p style="margin: 0 0 4px; font-size: 14px">複数業務の連携</p><p style="margin: 0; font-family: 'Geist', sans-serif; font-weight: 300; font-size: 48px; line-height: 1.1; color: #F1F1FF">10<span style="font-family: 'Noto Sans JP'; font-size: 18px; font-weight: 700">万円〜</span></p></div>
+<div><p style="margin: 0 0 4px; font-size: 14px">大規模開発</p><p style="margin: 0; font-family: 'Geist', sans-serif; font-weight: 300; font-size: 48px; line-height: 1.1; color: #F1F1FF">30<span style="font-family: 'Noto Sans JP'; font-size: 18px; font-weight: 700">万円〜</span></p></div>
+<div><p style="margin: 0 0 4px; font-size: 14px">HP・名刺・広告</p><p style="margin: 0; font-family: 'Geist', sans-serif; font-weight: 300; font-size: 48px; line-height: 1.1; color: #F1F1FF">[00]<span style="font-family: 'Noto Sans JP'; font-size: 18px; font-weight: 700">万円〜</span></p></div>
+</div>
+<p style="margin: 20px 0 0; font-size: 12px">※税込。内容・規模に応じて個別にお見積もりします。必要な機能に絞り、小さく始められるご提案も可能です。</p>
+</div>
+</div>
+</section>
+
+<!-- Marquee 1 -->
+<div aria-hidden="true" style="background: {{red}}; overflow: hidden; padding: 18px 0">
+<div class="mq" style="font-family: 'Anton', sans-serif; font-size: clamp(80px, 12vw, 180px); line-height: 1; color: rgba(0,0,0,0.28); letter-spacing: 0.02em; white-space: nowrap">
+<span style="padding-right: 60px">WE FOLD IDEAS INTO PRODUCTS — WE FOLD IDEAS INTO PRODUCTS —</span><span style="padding-right: 60px">WE FOLD IDEAS INTO PRODUCTS — WE FOLD IDEAS INTO PRODUCTS —</span>
+</div>
+</div>
+
+<!-- Trust -->
+<section id="trust" style="position: relative">
+<div style="max-width: 1280px; margin: 0 auto; padding: 120px 56px 140px">
+<div style="display: flex; flex-wrap: wrap; gap: 24px 64px; margin-bottom: 56px">
+<h2 style="flex: 0 0 160px; margin: 12px 0 0; font-family: 'Geist Mono', monospace; font-weight: 500; font-size: 14px; color: #F1F1FF">［ Trust ］</h2>
+<p style="flex: 1 1 560px; min-width: 0; margin: 0; font-size: clamp(22px, 2.6vw, 34px); font-weight: 900; line-height: 1.6; color: #F1F1FF">数字が示す、任せられる理由。</p>
+</div>
+<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); border-top: 1px solid rgba(241,241,255,0.14)">
+<div style="padding: 32px 24px 32px 0; border-bottom: 1px solid rgba(241,241,255,0.14)"><p style="margin: 0 0 8px; font-family: 'Geist Mono', monospace; font-size: 12px; color: #FF9AA5">［ 01 ］Projects</p><p style="margin: 0; font-family: 'Geist', sans-serif; font-weight: 300; font-size: 72px; line-height: 1; color: #F1F1FF">[000]</p><p style="margin: 10px 0 0; font-size: 14px">累計開発件数</p></div>
+<div style="padding: 32px 24px 32px 0; border-bottom: 1px solid rgba(241,241,255,0.14)"><p style="margin: 0 0 8px; font-family: 'Geist Mono', monospace; font-size: 12px; color: #FF9AA5">［ 02 ］Clients</p><p style="margin: 0; font-family: 'Geist', sans-serif; font-weight: 300; font-size: 72px; line-height: 1; color: #F1F1FF">[000]</p><p style="margin: 10px 0 0; font-size: 14px">取引企業数</p></div>
+<div style="padding: 32px 24px 32px 0; border-bottom: 1px solid rgba(241,241,255,0.14)"><p style="margin: 0 0 8px; font-family: 'Geist Mono', monospace; font-size: 12px; color: #FF9AA5">［ 03 ］Repeat</p><p style="margin: 0; font-family: 'Geist', sans-serif; font-weight: 300; font-size: 72px; line-height: 1; color: #F1F1FF">[00]%</p><p style="margin: 10px 0 0; font-size: 14px">継続・リピート率</p></div>
+<div style="padding: 32px 24px 32px 0; border-bottom: 1px solid rgba(241,241,255,0.14)"><p style="margin: 0 0 8px; font-family: 'Geist Mono', monospace; font-size: 12px; color: #FF9AA5">［ 04 ］Industries</p><p style="margin: 0; font-family: 'Geist', sans-serif; font-weight: 300; font-size: 72px; line-height: 1; color: #F1F1FF">[00]</p><p style="margin: 10px 0 0; font-size: 14px">対応業種</p></div>
+</div>
+<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 40px; margin-top: 64px">
+<div><p style="margin: 0 0 10px; font-family: 'Geist Mono', monospace; font-size: 13px; color: #F1F1FF">〈 One Team 〉</p><p style="margin: 0 0 8px; font-size: 18px; font-weight: 700; color: #F1F1FF">専任担当がゴールまで伴走</p><p style="margin: 0; font-size: 14px">ヒアリングから納品後まで、同じ担当者が窓口。引き継ぎのズレが起きません。</p></div>
+<div><p style="margin: 0 0 10px; font-family: 'Geist Mono', monospace; font-size: 13px; color: #F1F1FF">〈 Transparent 〉</p><p style="margin: 0 0 8px; font-size: 18px; font-weight: 700; color: #F1F1FF">明朗な見積もりと週次報告</p><p style="margin: 0; font-size: 14px">範囲と費用を事前に明確化。開発中は毎週、進捗をご報告します。</p></div>
+<div><p style="margin: 0 0 10px; font-family: 'Geist Mono', monospace; font-size: 13px; color: #F1F1FF">〈 Long Run 〉</p><p style="margin: 0 0 8px; font-size: 18px; font-weight: 700; color: #F1F1FF">納品後の保守・改善まで</p><p style="margin: 0; font-size: 14px">作って終わりにせず、運用中の不具合や改善のご要望にも継続対応します。</p></div>
+</div>
+</div>
+</section>
+
+<!-- Works -->
+<section id="works" style="position: relative; background: #0B0B0E; border-top: 1px solid rgba(241,241,255,0.08)">
+<div style="max-width: 1280px; margin: 0 auto; padding: 120px 56px 140px">
+<div style="display: flex; flex-wrap: wrap; gap: 24px 64px; margin-bottom: 48px">
+<h2 style="flex: 0 0 160px; margin: 12px 0 0; font-family: 'Geist Mono', monospace; font-weight: 500; font-size: 14px; color: #F1F1FF">［ Works ］</h2>
+<p style="flex: 1 1 560px; min-width: 0; margin: 0; font-size: clamp(22px, 2.6vw, 34px); font-weight: 900; line-height: 1.6; color: #F1F1FF">業種を問わず、積み重ねてきた開発実績。</p>
+</div>
+<div style="display: flex; flex-direction: column; border-top: 1px solid rgba(241,241,255,0.14)">
+<a href="#works" style="display: flex; flex-wrap: wrap; align-items: center; gap: 16px 32px; padding: 24px 0; border-bottom: 1px solid rgba(241,241,255,0.14); text-decoration: none; color: inherit">
+<div style="flex: 0 0 160px; aspect-ratio: 16 / 10; border-radius: 4px; background: #1A1A20; display: flex; align-items: center; justify-content: center; font-size: 11px">［実績画像］</div>
+<span style="flex: 0 0 200px; font-family: 'Geist Mono', monospace; font-size: 13px; color: #FF9AA5">〈 HP制作 〉</span>
+<span style="flex: 1 1 360px; min-width: 0; font-size: 16px; color: #F1F1FF">XNOS株式会社様：製造業向けコーポレートサイトの制作</span>
+<span aria-hidden="true" style="font-family: 'Geist Mono', monospace">→</span>
+</a>
+<a href="#works" style="display: flex; flex-wrap: wrap; align-items: center; gap: 16px 32px; padding: 24px 0; border-bottom: 1px solid rgba(241,241,255,0.14); text-decoration: none; color: inherit">
+<div style="flex: 0 0 160px; aspect-ratio: 16 / 10; border-radius: 4px; background: #1A1A20; display: flex; align-items: center; justify-content: center; font-size: 11px">［実績画像］</div>
+<span style="flex: 0 0 200px; font-family: 'Geist Mono', monospace; font-size: 13px; color: #FF9AA5">〈 HP制作 〉</span>
+<span style="flex: 1 1 360px; min-width: 0; font-size: 16px; color: #F1F1FF">Writeful Academy様：ライティングスクールの公式サイト制作</span>
+<span aria-hidden="true" style="font-family: 'Geist Mono', monospace">→</span>
+</a>
+<a href="#works" style="display: flex; flex-wrap: wrap; align-items: center; gap: 16px 32px; padding: 24px 0; border-bottom: 1px solid rgba(241,241,255,0.14); text-decoration: none; color: inherit">
+<div style="flex: 0 0 160px; aspect-ratio: 16 / 10; border-radius: 4px; background: #1A1A20; display: flex; align-items: center; justify-content: center; font-size: 11px">［実績画像］</div>
+<span style="flex: 0 0 200px; font-family: 'Geist Mono', monospace; font-size: 13px; color: #FF9AA5">〈 業務自動化 〉</span>
+<span style="flex: 1 1 360px; min-width: 0; font-size: 16px; color: #F1F1FF">[企業名]様：[実績タイトル：例）集計・レポート作成の自動化]</span>
+<span aria-hidden="true" style="font-family: 'Geist Mono', monospace">→</span>
+</a>
+<a href="#works" style="display: flex; flex-wrap: wrap; align-items: center; gap: 16px 32px; padding: 24px 0; border-bottom: 1px solid rgba(241,241,255,0.14); text-decoration: none; color: inherit">
+<div style="flex: 0 0 160px; aspect-ratio: 16 / 10; border-radius: 4px; background: #1A1A20; display: flex; align-items: center; justify-content: center; font-size: 11px">［実績画像］</div>
+<span style="flex: 0 0 200px; font-family: 'Geist Mono', monospace; font-size: 13px; color: #FF9AA5">〈 名刺・広告 〉</span>
+<span style="flex: 1 1 360px; min-width: 0; font-size: 16px; color: #F1F1FF">[企業名]様：[実績タイトル：例）店舗チラシ・名刺のデザイン]</span>
+<span aria-hidden="true" style="font-family: 'Geist Mono', monospace">→</span>
+</a>
+</div>
+<figure style="margin: 64px 0 0; display: flex; flex-wrap: wrap; gap: 24px 64px">
+<p style="flex: 0 0 160px; margin: 6px 0 0; font-family: 'Geist Mono', monospace; font-size: 13px; color: #F1F1FF">〈 Voice 〉</p>
+<div style="flex: 1 1 560px; min-width: 0">
+<blockquote style="margin: 0 0 14px; font-size: 20px; line-height: 1.9; color: #F1F1FF">「[お客様の声：例）ITに詳しくない私たちにも、専門用語を使わずに説明してくれたので安心して任せられました。]」</blockquote>
+<figcaption style="font-size: 14px">[会社名] [役職] [お名前] 様</figcaption>
+</div>
+</figure>
+<p style="margin: 48px 0 0"><a href="#works" style="font-family: 'Geist Mono', monospace; font-size: 14px; text-decoration: none; color: #FF9AA5">〈View All Works →〉</a></p>
+</div>
+</section>
+
+<!-- Group business -->
+<section id="group" style="position: relative">
+<div style="max-width: 1280px; margin: 0 auto; padding: 120px 56px 40px">
+<div style="display: flex; flex-wrap: wrap; gap: 24px 64px; margin-bottom: 48px">
+<h2 style="flex: 0 0 160px; margin: 12px 0 0; font-family: 'Geist Mono', monospace; font-weight: 500; font-size: 14px; color: #F1F1FF">［ Group ］</h2>
+<div style="flex: 1 1 560px; min-width: 0">
+<p style="margin: 0 0 12px; font-size: clamp(22px, 2.6vw, 34px); font-weight: 900; line-height: 1.6; color: #F1F1FF">自ら、4つの事業を運営しています。</p>
+<p style="margin: 0; font-size: 15px">開発だけの会社ではありません。現場の売上・集客・事務作業に日々向き合っているからこそ、本当に役立つ仕組みがわかります。</p>
+</div>
+</div>
+<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1px; background: rgba(241,241,255,0.12); border: 1px solid rgba(241,241,255,0.12)">
+<div style="background: #050506; padding: 32px 28px; display: flex; flex-direction: column; gap: 10px"><p style="margin: 0; font-family: 'Geist Mono', monospace; font-size: 12px; color: #FF9AA5">［ 01 ］Restaurant</p><p style="margin: 0; font-size: 20px; font-weight: 900; color: #F1F1FF">Standing Bar<br>Nishiizu Yeah! Yeah! Yeah!</p><p style="margin: 0; font-size: 14px">2026年11月、JR大船駅東口すぐにオープンした立ち飲み屋。お昼12:00から楽しく飲めるお店です。</p></div>
+<div style="background: #050506; padding: 32px 28px; display: flex; flex-direction: column; gap: 10px"><p style="margin: 0; font-family: 'Geist Mono', monospace; font-size: 12px; color: #FF9AA5">［ 02 ］School</p><p style="margin: 0; font-size: 20px; font-weight: 900; color: #F1F1FF">ライティングスクール</p><p style="margin: 0; font-size: 14px">初心者からプロまで、文章力を磨く実践型スクールを運営。</p></div>
+<div style="background: #050506; padding: 32px 28px; display: flex; flex-direction: column; gap: 10px"><p style="margin: 0; font-family: 'Geist Mono', monospace; font-size: 12px; color: #FF9AA5">［ 03 ］Real Estate</p><p style="margin: 0; font-size: 20px; font-weight: 900; color: #F1F1FF">不動産事業</p><p style="margin: 0; font-size: 14px">売買・賃貸・仲介・開発・管理まで、総合的にサービスを提供。</p></div>
+<div style="background: #050506; padding: 32px 28px; display: flex; flex-direction: column; gap: 10px"><p style="margin: 0; font-family: 'Geist Mono', monospace; font-size: 12px; color: #FF9AA5">［ 04 ］Energy</p><p style="margin: 0; font-size: 20px; font-weight: 900; color: #F1F1FF">クロノス（XNOS株式会社）</p><p style="margin: 0; font-size: 14px">電子ブレーカー「MCS」の導入で、工場・店舗・施設の電気基本料金の見直しを支援。</p><a href="https://www.xnos.jp/" style="font-family: 'Geist Mono', monospace; font-size: 13px; color: #FF9AA5; text-decoration: none">〈xnos.jp ↗〉</a></div>
+</div>
+</div>
+</section>
+
+<!-- Flow + Company -->
+<section id="company" style="position: relative">
+<div style="max-width: 1280px; margin: 0 auto; padding: 120px 56px 140px">
+<div style="display: flex; flex-wrap: wrap; gap: 24px 64px; margin-bottom: 40px">
+<h2 style="flex: 0 0 160px; margin: 12px 0 0; font-family: 'Geist Mono', monospace; font-weight: 500; font-size: 14px; color: #F1F1FF">［ Flow ］</h2>
+<p style="flex: 1 1 560px; min-width: 0; margin: 0; font-size: clamp(22px, 2.6vw, 34px); font-weight: 900; line-height: 1.6; color: #F1F1FF">ご相談から運用まで、5ステップ。</p>
+</div>
+<ol style="list-style: none; margin: 0 0 120px; padding: 0; display: grid; grid-template-columns: repeat(auto-fit, minmax(190px, 1fr)); gap: 1px; background: rgba(241,241,255,0.12); border: 1px solid rgba(241,241,255,0.12)">
+<li style="background: #050506; padding: 24px"><p style="margin: 0 0 10px; font-family: 'Geist Mono', monospace; font-size: 12px; color: #FF9AA5">STEP_01</p><p style="margin: 0 0 6px; font-weight: 700; color: #F1F1FF">ご相談</p><p style="margin: 0; font-size: 13px">LINE・お電話・メールで気軽に。</p></li>
+<li style="background: #050506; padding: 24px"><p style="margin: 0 0 10px; font-family: 'Geist Mono', monospace; font-size: 12px; color: #FF9AA5">STEP_02</p><p style="margin: 0 0 6px; font-weight: 700; color: #F1F1FF">無料ヒアリング</p><p style="margin: 0; font-size: 13px">課題とご要望をうかがいます。</p></li>
+<li style="background: #050506; padding: 24px"><p style="margin: 0 0 10px; font-family: 'Geist Mono', monospace; font-size: 12px; color: #FF9AA5">STEP_03</p><p style="margin: 0 0 6px; font-weight: 700; color: #F1F1FF">ご提案・お見積り</p><p style="margin: 0; font-size: 13px">範囲・期間・費用を明確に。</p></li>
+<li style="background: #050506; padding: 24px"><p style="margin: 0 0 10px; font-family: 'Geist Mono', monospace; font-size: 12px; color: #FF9AA5">STEP_04</p><p style="margin: 0 0 6px; font-weight: 700; color: #F1F1FF">制作・導入</p><p style="margin: 0; font-size: 13px">進捗を共有しながら制作。</p></li>
+<li style="background: #050506; padding: 24px"><p style="margin: 0 0 10px; font-family: 'Geist Mono', monospace; font-size: 12px; color: #FF9AA5">STEP_05</p><p style="margin: 0 0 6px; font-weight: 700; color: #F1F1FF">運用・改善</p><p style="margin: 0; font-size: 13px">使い方のフォローから改善まで。</p></li>
+</ol>
+<div style="display: flex; flex-wrap: wrap; gap: 24px 64px">
+<h2 style="flex: 0 0 160px; margin: 12px 0 0; font-family: 'Geist Mono', monospace; font-weight: 500; font-size: 14px; color: #F1F1FF">［ Company ］</h2>
+<div style="flex: 1 1 560px; min-width: 0; display: flex; flex-wrap: wrap; gap: 48px">
+<div style="flex: 1 1 320px; min-width: 0">
+<p style="margin: 0 0 20px; font-size: clamp(20px, 2.2vw, 28px); font-weight: 900; line-height: 1.6; color: #F1F1FF">その手間を減らして、<br>仕事を前へ。</p>
+</div>
+<dl style="flex: 1 1 320px; min-width: 0; margin: 0; font-size: 14px">
+<div style="display: flex; gap: 16px; padding: 14px 0; border-bottom: 1px solid rgba(241,241,255,0.12)"><dt style="flex: 0 0 88px; font-family: 'Geist Mono', monospace; font-size: 12px; color: #FF9AA5">Name</dt><dd style="margin: 0">ORIGAMI GRP</dd></div>
+<div style="display: flex; gap: 16px; padding: 14px 0; border-bottom: 1px solid rgba(241,241,255,0.12)"><dt style="flex: 0 0 88px; font-family: 'Geist Mono', monospace; font-size: 12px; color: #FF9AA5">Address</dt><dd style="margin: 0">東京都足立区青井4-30-12 スカイレジデンス蒼102</dd></div>
+<div style="display: flex; gap: 16px; padding: 14px 0"><dt style="flex: 0 0 88px; font-family: 'Geist Mono', monospace; font-size: 12px; color: #FF9AA5">Business</dt><dd style="margin: 0">業務自動化・AI活用支援／アプリ開発／HP制作／名刺・広告制作／AIコンサルティング（個人向け）／飲食店運営／ライティングスクール運営／不動産事業／電気料金削減事業（クロノス）</dd></div>
+<div style="display: flex; gap: 16px; padding: 14px 0; border-top: 1px solid rgba(241,241,255,0.12)"><dt style="flex: 0 0 88px; font-family: 'Geist Mono', monospace; font-size: 12px; color: #FF9AA5">Contact</dt><dd style="margin: 0">TEL 070-8458-8553（10:00〜23:00）<br>nan457913@gmail.com</dd></div>
+</dl>
+</div>
+</div>
+</div>
+</section>
+
+<!-- Contact -->
+<section id="contact" style="position: relative; background: {{red}}; overflow: hidden">
+<div aria-hidden="true" class="mq" style="position: absolute; left: 0; bottom: -10px; font-family: 'Anton', sans-serif; font-size: clamp(120px, 16vw, 240px); line-height: 1; color: rgba(0,0,0,0.22); white-space: nowrap">
+<span style="padding-right: 80px">GET IN TOUCH — GET IN TOUCH —</span><span style="padding-right: 80px">GET IN TOUCH — GET IN TOUCH —</span>
+</div>
+<div style="position: relative; max-width: 1280px; margin: 0 auto; padding: 120px 56px 220px; display: flex; flex-wrap: wrap; gap: 24px 64px">
+<h2 style="flex: 0 0 160px; margin: 14px 0 0; font-family: 'Geist Mono', monospace; font-weight: 500; font-size: 14px; color: #FFFFFF">［ Contact ］</h2>
+<div style="flex: 1 1 560px; min-width: 0">
+<p style="margin: 0 0 16px; font-family: 'Geist', sans-serif; font-weight: 700; font-size: clamp(40px, 5.5vw, 80px); line-height: 1.1; color: #FFFFFF"><span style="display: inline-block; white-space: nowrap; margin-right: 0.3em">ORIGAMI GRP is</span><span style="display: inline-block; white-space: nowrap; font-family: 'Geist Mono', monospace; font-weight: 400">〈Ready.〉</span></p>
+<p style="margin: 0 0 8px; font-size: 17px; color: #FFFFFF">まずはLINEで無料相談。「この作業、自動化できる？」からでOKです。</p>
+<p style="margin: 0 0 36px; font-size: 15px; color: #FFFFFF">内容がまとまっていなくても大丈夫。担当：山下</p>
+<div style="display: flex; flex-wrap: wrap; gap: 14px">
+<a href="#contact" style="display: inline-flex; align-items: center; gap: 12px; text-decoration: none; background: #050506; color: #FFFFFF; padding: 18px 32px; border-radius: 6px; font-weight: 700">LINEで無料相談する <span style="font-family: 'Geist Mono', monospace">→</span></a>
+<a href="tel:07084588553" style="display: inline-flex; align-items: center; text-decoration: none; color: #FFFFFF; padding: 17px 28px; border-radius: 6px; font-weight: 700; border: 1px solid rgba(255,255,255,0.7)">電話する 070-8458-8553</a>
+</div>
+</div>
+</div>
+</section>
+
+<footer style="position: relative; background: #050506; text-align: center">
+<div style="max-width: 1280px; margin: 0 auto; padding: 72px 32px 40px; display: flex; flex-direction: column; align-items: center; gap: 24px">
+<img src="assets/emblem-red.png" alt="ORIGAMI GRP" style="width: 120px; height: 120px">
+<p style="margin: 0; font-size: 12px">東京都足立区青井4-30-12 スカイレジデンス蒼102 ／ TEL 070-8458-8553</p>
+<nav aria-label="フッター" style="display: flex; flex-wrap: wrap; justify-content: center; gap: 8px 0; font-family: 'Geist Mono', monospace; font-size: 13px">
+<a href="index.html" style="padding: 0 18px; text-decoration: none; border-right: 1px solid rgba(241,241,255,0.3)">トップへ</a><a href="#about" style="padding: 0 18px; text-decoration: none; border-right: 1px solid rgba(241,241,255,0.3)">About us</a>
+<a href="#service" style="padding: 0 18px; text-decoration: none; border-right: 1px solid rgba(241,241,255,0.3)">Service</a>
+<a href="#works" style="padding: 0 18px; text-decoration: none; border-right: 1px solid rgba(241,241,255,0.3)">Works</a>
+<a href="#group" style="padding: 0 18px; text-decoration: none; border-right: 1px solid rgba(241,241,255,0.3)">Group</a>
+<a href="#company" style="padding: 0 18px; text-decoration: none; border-right: 1px solid rgba(241,241,255,0.3)">Company</a>
+<a href="personal.html" style="padding: 0 18px; text-decoration: none">個人のお客様</a>
+</nav>
+<a href="#contact" style="background: {{red}}; color: #FFFFFF; text-decoration: none; padding: 10px 40px; border-radius: 4px; font-family: 'Geist Mono', monospace; font-size: 15px">Contact &gt;</a>
+<div style="width: 100%; display: flex; flex-wrap: wrap; justify-content: space-between; gap: 12px; margin-top: 32px; font-size: 11px"><a href="#top" style="text-decoration: none">Privacy policy</a><span>© 2026 ORIGAMI GRP All Rights Reserved.</span></div>
+</div>
+</footer>
+</div>
+</template>
+<script src="dc-runtime-lite.js"></script>
+<script>
+
+function rnd(n) { var x = Math.sin(n * 9301 + 49297) * 233280; return x - Math.floor(x); }
+var SPARKS = [];
+for (var i = 0; i < 34; i++) SPARKS.push({ x: (rnd(i + 1) * 100).toFixed(1) + '%', s: (2 + Math.round(rnd(i + 2) * 3)) + 'px', c: i % 4 === 0 ? '#FFFFFF' : (i % 2 ? '#FF3B55' : '#C8102E'), t: (1.4 + rnd(i + 3) * 1.8).toFixed(2) + 's', d: (-rnd(i + 4) * 3).toFixed(2) + 's', dx: (rnd(i + 5) * 160 - 80).toFixed(0) + 'px' });
+var WORDS = ['Folding.', 'Practical.', 'Reliable.', 'Hands-on.', 'Tech-driven.', 'Friendly.', 'Your Team.'];
+var SERVICES = [
+  { no: '01', en: 'Automation', jp: '業務の自動化・AI活用', file: 'automation.md',
+    title: 'その繰り返し作業、自動化から始めませんか。',
+    body: '入力・転記、集計・レポート作成、問い合わせ対応など、毎日の手作業を自動化。作業時間と人件費の負担を減らし、同じ人数でより多くの仕事に取り組める環境をつくります。',
+    points: ['Excelへの転記・各種フォーム入力・書類作成', '売上データの集計・グラフ作成・定期レポート', 'Excel・メール・クラウドサービスの連携、文章作成・要約などのAI活用'],
+    code: 'before: 手作業の入力・転記\nbefore: 時間のかかる集計\nsolve: 業務に合わせて自動化\nafter: 確認だけで作業が完了\nafter: 業務コストの削減\nstatus: running' },
+  { no: '02', en: 'App Development', jp: 'アプリ・ツール開発', file: 'app_development.md',
+    title: '必要な機能に絞って、小さく始める。',
+    body: '業務用ツールや社内システム、既存システムの改善まで。今の仕事の流れを見ながら、本当に必要な機能から素早くカタチにします。',
+    points: ['業務用ツール・管理システムの開発', '既存システムの改善', 'LINE公式アカウントとの連携'],
+    code: 'step_1: 業務の確認\nstep_2: 必要な機能を整理\nstep_3: 小さく開発\nstep_4: 使いながら改善\nscale: 必要に応じて拡張\nstatus: shipping' },
+  { no: '03', en: 'Website', jp: 'ホームページ制作', file: 'website.md',
+    title: '想いが伝わる、会社の顔をつくる。',
+    body: '企画・構成・デザインからコーディング、公開まで一貫対応。既存サイトのデザイン改善や修正・更新もお任せください。スマホでも見やすいレスポンシブ対応です。',
+    points: ['ゼロからのサイト制作（企画〜公開）', '既存サイトの改善・修正・更新', 'レスポンシブ対応／GitHub・Vercelでの公開'],
+    code: 'plan: 目的とターゲット整理\ndesign: 構成・デザイン\nbuild: コーディング\ncheck: スマホ表示を確認\ndeploy: 公開\nstatus: live' },
+  { no: '04', en: 'Print & Ads', jp: '名刺・広告デザイン', file: 'print_ads.md',
+    title: '手に取られる、目に留まるデザインを。',
+    body: '名刺、チラシ、バナー、SNS広告まで。AIツールも活用しながら、伝わるデザインをスピーディーに制作します。',
+    points: ['名刺・ショップカード', 'チラシ・パンフレット・バナー', 'SNS広告・AIナレーション動画'],
+    code: 'brief: 伝えたいことを整理\ncopy: キャッチコピー作成\ndesign: デザイン制作\nreview: 修正対応\ndeliver: 入稿・納品\nstatus: delivered' },
+  { no: '+α', en: 'Support', jp: '導入後のサポート', file: 'support.md',
+    title: '作って終わりに、しない。',
+    body: '使い方のフォローから改善のご相談まで、導入後も継続してサポート。人件費の増加を抑えながら、業務の変化に合わせて仕組みを育てていきます。',
+    points: ['使い方のフォロー', '改善・機能追加のご相談', 'コストを抑えたご提案'],
+    code: 'follow: 使い方をサポート\nlisten: 改善の相談\nimprove: 機能を追加\ncost: 必要な分だけ\nloop: continue\nstatus: stable' }
+];
+class Component extends DCLogic {
+  constructor(props) { super(props); this.state = { w: 0, tab: 0, manual: false }; }
+  componentDidMount() {
+    var self = this;
+    this.timer = setInterval(function () { self.setState({ w: (self.state.w + 1) % WORDS.length }); }, 1400);
+    this.tabTimer = setInterval(function () { if (!self.state.manual) self.setState({ tab: (self.state.tab + 1) % SERVICES.length }); }, 4500);
+  }
+  componentWillUnmount() { clearInterval(this.timer); clearInterval(this.tabTimer); }
+  renderVals() {
+    var self = this;
+    var red = this.props.red ?? '#C8102E';
+    var tab = this.state.tab;
+    var tabs = SERVICES.map(function (s, i) {
+      var on = i === tab;
+      return {
+        no: s.no, en: s.en, jp: s.jp, on: on, off: !on, wide: i === SERVICES.length - 1 ? 'svWide' : '',
+        pick: function () { self.setState({ tab: i, manual: true }); }
+      };
+    });
+    var cur = Object.assign({}, SERVICES[tab], { parts: SERVICES[tab].title.split(/(?<=、)/) });
+    return { red: red, word: WORDS[this.state.w], tabs: tabs, cur: cur, sparks: SPARKS, auto: !this.state.manual, barCls: tab % 2 ? 'barB' : 'barA', panCls: tab % 2 ? 'panB' : 'panA' };
+  }
+}
+
+__dcMount(Component, {"red": "#C8102E"});
+</script>
+</body>
+</html>
